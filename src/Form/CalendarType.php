@@ -16,23 +16,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CalendarType extends AbstractType
 {
-
-    private $importanceRepo;
-    private $importance;
-
-    public function __construct(ImportanceRepository $repo)
-    {
-        $this->importanceRepo = $repo;
-        $this->importance = $repo->findAll();
-        
-    }
     public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $choices = $this->importance;
-
-       
-
-
+    {   
         $builder
             ->add('debut',DateTimeType::class, [
                 'date_widget'=>'single_text'
