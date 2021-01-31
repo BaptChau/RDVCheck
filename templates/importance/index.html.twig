@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Importance index{% endblock %}
+
+{% block body %}
+    <h1>Importance index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Libelle</th>
+                <th>Color</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for importance in importances %}
+            <tr>
+                <td>{{ importance.id }}</td>
+                <td>{{ importance.libelle }}</td>
+                <td>{{ importance.color }}</td>
+                <td>
+                    <a href="{{ path('importance_show', {'id': importance.id}) }}">show</a>
+                    <a href="{{ path('importance_edit', {'id': importance.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('importance_new') }}">Create new</a>
+{% endblock %}

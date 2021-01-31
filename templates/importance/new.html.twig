@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Importance{% endblock %}
+
+{% block body %}
+    <h1>Create new Importance</h1>
+
+    {{ include('importance/_form.html.twig') }}
+
+    <a href="{{ path('importance_index') }}">back to list</a>
+{% endblock %}
