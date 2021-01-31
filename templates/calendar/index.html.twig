@@ -9,7 +9,6 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Date</th>
                 <th>Debut</th>
                 <th>Fin</th>
                 <th>Titre</th>
@@ -22,7 +21,6 @@
         {% for calendar in calendars %}
             <tr>
                 <td>{{ calendar.id }}</td>
-                <td>{{ calendar.date ? calendar.date|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ calendar.debut ? calendar.debut|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ calendar.fin ? calendar.fin|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ calendar.titre }}</td>

@@ -20,11 +20,6 @@ class Calendar
     /**
      * @ORM\Column(type="datetime")
      */
-    private $date;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
     private $debut;
 
     /**
@@ -57,19 +52,7 @@ class Calendar
     {
         return $this->id;
     }
-
-    public function getDate(): ?\DateTimeInterface
-    {
-        return $this->date;
-    }
-
-    public function setDate(\DateTimeInterface $date): self
-    {
-        $this->date = $date;
-
-        return $this;
-    }
-
+    
     public function getDebut(): ?\DateTimeInterface
     {
         return $this->debut;
