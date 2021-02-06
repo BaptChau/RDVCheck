@@ -11,6 +11,19 @@
 <div class="container">
     <div id="calendar">
     </div>
+    <div id="calendarModal" class="modal fade">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 id="modalTitle" class="modal-title"></h4>
+        </div>
+        <div id="modalBody" class="modal-body"> </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>
+</div>
 </div>
 {% endblock %}
 {% block javascripts %}
@@ -19,14 +32,38 @@
         let calendarEl = document.getElementById('calendar')
         let calendar = new FullCalendar.Calendar(calendarEl, {
             timeZone:'Europe/Paris',
+            navLinks: true,
+            dayMaxEvents: true,
             locale: 'fr',
             initialView: 'timeGridWeek',
+            nowIndicator: true,
+            businessHours: {
+                dayOfWeek: [1,2,3,4,5],
+                startTime: '8:30',
+                endTime: '17:30'
+            },
             headerToolbar:{
                 center: 'timeGridWeek,dayGridMonth'
             },
-            events: {{data | raw}}
+            events: {{data | raw}},
+            dayMaxEventRows: true,
+            views: {
+                timeGrid: {
+                    dayMaxEventRows: 3
+                }
+            },
+            eventClick: function(events, jsEvent, view){
+                let event = events.event
+                console.log(event.extendedProps.description)
+                $('#modalTitle').html(event.title);
+                $('#modalBody').html(event.extendedProps.description);
+                $('#eventUrl').attr('href',event.url);
+                $('#calendarModal').modal();
+            }
         })
         calendar.render()
     }
+
+
     </script>
 {% endblock %}
